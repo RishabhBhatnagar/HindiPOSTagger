@@ -31,7 +31,8 @@ class POSParser(HTMLParser):
         self.tag_history.pop()
 
     def handle_data(self, data):
-        if (hist := self.tag_history) and 'sentence' in hist[-1].lower():
+        hist = self.tag_history
+        if hist and 'sentence' in hist[-1].lower():
             data = data.strip('\n')
             if not data:
                 return
@@ -50,7 +51,7 @@ class POSParser(HTMLParser):
     def parse_file(self, file_path):
         # parsing data in the file.
         self._reset_ds()
-        self.feed((fh := open(file_path)).read())
-        fh.close()
+        with open(file_path) as fh:
+            self.feed(fh.read())
         return self.data
 
