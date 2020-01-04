@@ -1,23 +1,6 @@
 from enum import Enum, auto
 
 
-class SelectionType(Enum):
-    RW = auto()   # Roulette Wheel
-    SUS = auto()   # Stochastic Universal Sampling
-    BestFitness = auto()
-    Tournament = auto()
-
-
-class CrossoverType(Enum):
-    OnePoint = auto()
-    TwoPoint = auto()
-    Uniform = auto()
-    Davis = auto()
-    And = auto()      # bitwise and
-    Xor = auto()      # bitwise xor
-
-
-
 def build_initial_population(tagged_sentence):
     """
     Generate Initial population from given word tags for the given sentence.
